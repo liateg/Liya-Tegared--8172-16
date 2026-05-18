@@ -25,7 +25,9 @@ class RecipeCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(16),
+              ),
               child: Image.network(
                 recipe.image,
                 height: 180,
@@ -44,13 +46,19 @@ class RecipeCard extends StatelessWidget {
                       children: [
                         Text(
                           recipe.name,
-                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 6.0),
                           child: Text(
                             '${recipe.rating} • ${recipe.reviewCount} reviews',
-                            style: TextStyle(color: Colors.grey[700], fontSize: 13),
+                            style: TextStyle(
+                              color: Colors.grey[700],
+                              fontSize: 13,
+                            ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -60,7 +68,10 @@ class RecipeCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.green[700],
                       borderRadius: BorderRadius.circular(20),
@@ -74,16 +85,25 @@ class RecipeCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 14.0,
+                vertical: 8,
+              ),
               child: Row(
                 children: [
                   const Icon(Icons.access_time, size: 16, color: Colors.grey),
                   const SizedBox(width: 6),
-                  Text('${recipe.cookTimeMinutes}m', style: const TextStyle(color: Colors.grey)),
+                  Text(
+                    '${recipe.cookTimeMinutes}m',
+                    style: const TextStyle(color: Colors.grey),
+                  ),
                   const SizedBox(width: 12),
                   const Icon(Icons.restaurant, size: 16, color: Colors.grey),
                   const SizedBox(width: 6),
-                  Text('${recipe.servings} srv', style: const TextStyle(color: Colors.grey)),
+                  Text(
+                    '${recipe.servings} srv',
+                    style: const TextStyle(color: Colors.grey),
+                  ),
                   const Spacer(),
                   CircleAvatar(
                     radius: 16,
@@ -93,7 +113,7 @@ class RecipeCard extends StatelessWidget {
                       color: isFavorite ? Colors.red : Colors.grey,
                       size: 18,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

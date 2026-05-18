@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'providers/recipe_provider.dart';
 import 'screens/home_screen.dart';
 import 'screens/favorites_screen.dart';
 import 'screens/add_edit_recipe_screen.dart';
@@ -12,10 +14,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'QuickBite',
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.teal),
-      home: const MainShell(),
+    return ChangeNotifierProvider(
+      create: (_) => RecipeProvider()..loadRecipes(),
+      child: MaterialApp(
+        title: 'QuickBite',
+        theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.teal),
+        home: const MainShell(),
+      ),
     );
   }
 }
@@ -43,7 +48,12 @@ class _MainShellState extends State<MainShell> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          boxShadow: [BoxShadow(blurRadius: 8, color: Colors.black.withOpacity(0.1))],
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 8,
+              color: Colors.black.withValues(alpha: 0.1),
+            ),
+          ],
         ),
         child: Padding(
           padding: const EdgeInsets.only(bottom: 12, top: 8),
@@ -103,7 +113,13 @@ class _NavItem extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.cyan[600],
             shape: BoxShape.circle,
-            boxShadow: [BoxShadow(blurRadius: 12, color: Colors.cyan.withOpacity(0.4), offset: const Offset(0, 4))],
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 12,
+                color: Colors.cyan.withValues(alpha: 0.4),
+                offset: const Offset(0, 4),
+              ),
+            ],
           ),
           child: Icon(icon, color: Colors.white, size: 28),
         ),

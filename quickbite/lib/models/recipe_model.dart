@@ -1,4 +1,3 @@
-
 class Recipe {
   final int id;
   final String name;
@@ -17,7 +16,7 @@ class Recipe {
   final int reviewCount;
   final List<String> mealType;
 
-  Recipe({
+  const Recipe({
     required this.id,
     required this.name,
     required this.ingredients,
@@ -35,96 +34,91 @@ class Recipe {
     required this.reviewCount,
     required this.mealType,
   });
-Recipe copyWith({
-  
-  String? name,
-  List<String>? ingredients,
-  List<String>? instructions,
-  int? prepTimeMinutes,
-  int? cookTimeMinutes,
-  int? servings,
-  String? difficulty,
-  String? cuisine,
-  int? caloriesPerServing,
-  List<String>? tags,
-  int? userId,
-  String? image,
-  double? rating,
-  int? reviewCount,
-  List<String>? mealType,
-}) {
-  return Recipe(
-   id:id,
-    name: name ?? this.name,
-    ingredients: ingredients ?? this.ingredients,
-    instructions: instructions ?? this.instructions,
-    prepTimeMinutes: prepTimeMinutes ?? this.prepTimeMinutes,
-    cookTimeMinutes: cookTimeMinutes ?? this.cookTimeMinutes,
-    servings: servings ?? this.servings,
-    difficulty: difficulty ?? this.difficulty,
-    cuisine: cuisine ?? this.cuisine,
-    caloriesPerServing: caloriesPerServing ?? this.caloriesPerServing,
-    tags: tags ?? this.tags,
-    userId: userId ?? this.userId,
-    image: image ?? this.image,
-    rating: rating ?? this.rating,
-    reviewCount: reviewCount ?? this.reviewCount,
-    mealType: mealType ?? this.mealType,
-  );
-}
-  factory Recipe.fromJson(Map<String, dynamic> json){
+
+  factory Recipe.fromJson(Map<String, dynamic> json) {
+    List<String> toStringList(dynamic value) {
+      if (value is List) {
+        return value.map((item) => item.toString()).toList();
+      }
+      return const <String>[];
+    }
+
     return Recipe(
-      id: json['id'],
-      name: json['name'],
-      ingredients: List<String>.from(json['ingredients']),
-      instructions: List<String>.from(json['instructions']),
-      prepTimeMinutes: json['prepTimeMinutes'],
-      cookTimeMinutes: json['cookTimeMinutes'],
-      servings: json['servings'],
-      difficulty: json['difficulty'],
-      cuisine: json['cuisine'],
-      caloriesPerServing: json['caloriesPerServing'],
-      tags: List<String>.from(json['tags']),
-      userId: json['userId'],
-      image: json['image'],
-      rating: (json['rating'] as num).toDouble(),
-      reviewCount: json['reviewCount'],
-      mealType: List<String>.from(json['mealType']),
+      id: (json['id'] as num?)?.toInt() ?? 0,
+      name: json['name']?.toString() ?? '',
+      ingredients: toStringList(json['ingredients']),
+      instructions: toStringList(json['instructions']),
+      prepTimeMinutes: (json['prepTimeMinutes'] as num?)?.toInt() ?? 0,
+      cookTimeMinutes: (json['cookTimeMinutes'] as num?)?.toInt() ?? 0,
+      servings: (json['servings'] as num?)?.toInt() ?? 0,
+      difficulty: json['difficulty']?.toString() ?? '',
+      cuisine: json['cuisine']?.toString() ?? '',
+      caloriesPerServing: (json['caloriesPerServing'] as num?)?.toInt() ?? 0,
+      tags: toStringList(json['tags']),
+      userId: (json['userId'] as num?)?.toInt() ?? 0,
+      image: json['image']?.toString() ?? '',
+      rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
+      reviewCount: (json['reviewCount'] as num?)?.toInt() ?? 0,
+      mealType: toStringList(json['mealType']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'ingredients': ingredients,
+      'instructions': instructions,
+      'prepTimeMinutes': prepTimeMinutes,
+      'cookTimeMinutes': cookTimeMinutes,
+      'servings': servings,
+      'difficulty': difficulty,
+      'cuisine': cuisine,
+      'caloriesPerServing': caloriesPerServing,
+      'tags': tags,
+      'userId': userId,
+      'image': image,
+      'rating': rating,
+      'reviewCount': reviewCount,
+      'mealType': mealType,
+    };
   }
 
-// "id": 1,
-//   "name": "Classic Margherita Pizza",
-//   "ingredients": [
-//     "Pizza dough",
-//     "Tomato sauce",
-//     "Fresh mozzarella cheese",
-//     "Fresh basil leaves",
-//     "Olive oil",
-//     "Salt and pepper to taste"
-//   ],
-//   "instructions": [
-//     "Preheat the oven to 475°F (245°C).",
-//     "Roll out the pizza dough and spread tomato sauce evenly.",
-//     "Top with slices of fresh mozzarella and fresh basil leaves.",
-//     "Drizzle with olive oil and season with salt and pepper.",
-//     "Bake in the preheated oven for 12-15 minutes or until the crust is golden brown.",
-//     "Slice and serve hot."
-//   ],
-//   "prepTimeMinutes": 20,
-//   "cookTimeMinutes": 15,
-//   "servings": 4,
-//   "difficulty": "Easy",
-//   "cuisine": "Italian",
-//   "caloriesPerServing": 300,
-//   "tags": [
-//     "Pizza",
-//     "Italian"
-//   ],
-//   "userId": 45,
-//   "image": "https://cdn.dummyjson.com/recipe-images/1.webp",
-//   "rating": 4.6,
-//   "reviewCount": 3,
-//   "mealType": [
-//     "Dinner"
+  Recipe copyWith({
+    int? id,
+    String? name,
+    List<String>? ingredients,
+    List<String>? instructions,
+    int? prepTimeMinutes,
+    int? cookTimeMinutes,
+    int? servings,
+    String? difficulty,
+    String? cuisine,
+    int? caloriesPerServing,
+    List<String>? tags,
+    int? userId,
+    String? image,
+    double? rating,
+    int? reviewCount,
+    List<String>? mealType,
+  }) {
+    return Recipe(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      ingredients: ingredients ?? this.ingredients,
+      instructions: instructions ?? this.instructions,
+      prepTimeMinutes: prepTimeMinutes ?? this.prepTimeMinutes,
+      cookTimeMinutes: cookTimeMinutes ?? this.cookTimeMinutes,
+      servings: servings ?? this.servings,
+      difficulty: difficulty ?? this.difficulty,
+      cuisine: cuisine ?? this.cuisine,
+      caloriesPerServing: caloriesPerServing ?? this.caloriesPerServing,
+      tags: tags ?? this.tags,
+      userId: userId ?? this.userId,
+      image: image ?? this.image,
+      rating: rating ?? this.rating,
+      reviewCount: reviewCount ?? this.reviewCount,
+      mealType: mealType ?? this.mealType,
+    );
+  }
+}
